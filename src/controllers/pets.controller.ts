@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { fetchAllPets, fetchPetById } from "../services/pets.service";
-import { log } from "console";
 
 export const getAllPets = async (req: Request, res: Response) => {
   const pets = await fetchAllPets();
