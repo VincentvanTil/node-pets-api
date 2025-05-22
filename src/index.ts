@@ -7,15 +7,21 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-console.log(port);
-
+app.use(express.json());
 app.use("/pets", petsRouter);
+
+console.log(`Server running at http://localhost:${port}/`);
 
 //  Handle unknown routes being called
 app.use((req, res) => {
   res.status(404).json({ message: "Endpoint does not exist" });
 });
 
-app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
-});
+export default app;
+
+/* istanbul ignore next */
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`⚡️ Server running at http://localhost:${port}`);
+  });
+}
