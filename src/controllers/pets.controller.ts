@@ -1,0 +1,15 @@
+import { Request, Response } from "express";
+import { fetchAllPets, fetchPetById } from "../services/pets.service";
+import { log } from "console";
+
+export const getAllPets = async (req: Request, res: Response) => {
+  const pets = await fetchAllPets();
+  res.json(pets);
+};
+
+export const getPetById = async (req: Request, res: Response) => {
+  const id = parseInt(req.params.id, 10);
+  const pet = await fetchPetById(id);
+  if (!pet) return res.status(404).json({ message: "Pet not found" });
+  res.json(pet);
+};
