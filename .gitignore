@@ -12,6 +12,8 @@ dist
 
 .env
 
+coverage
+
 package-lock.json
 
 # Editor directories and files
